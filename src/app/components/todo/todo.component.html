@@ -1,0 +1,33 @@
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Insert TODO" #itemTitle>
+  <div class="input-group-append">
+    <button 
+      class="btn btn-outline-secondary"
+      (click)="addTodo(itemTitle)"
+      >
+      <i class="fas fa-plus-circle"></i>
+    </button>
+  </div>
+</div>
+
+<ul class="list-group mt-4">
+  <li 
+    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" 
+    *ngFor="let todo of todoListArray">
+    <span 
+      class="cursor-hover"
+      [class.text-success]="todo.isChecked"
+      (click)="updateTodo(todo.$key, todo.isChecked)"
+      >
+      <i [ngClass]="todo.isChecked ? 'fas fa-check-circle': 'far fa-circle'"></i>
+    </span>
+    {{todo.title}}
+
+    <span 
+      class="text-danger cursor-hover"
+      (click)="deleteTodo(todo.$key)"
+      >
+        <i class="far fa-trash-alt"></i>
+    </span>
+  </li>
+</ul>
